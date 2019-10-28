@@ -12,7 +12,8 @@ RUN apt-get update -y && \
         wget \
         iotop \
         jq \
-        iftop
+        iftop \
+        postgresql-client
 
 # install kubectl
 RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.16.2/bin/linux/amd64/kubectl && \
