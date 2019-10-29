@@ -30,4 +30,10 @@ RUN export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" && \
 
 ENTRYPOINT ["/bin/bash"]
 
-CMD ["-c", "sleep infinity" ]
+ADD run.sh /run.sh
+RUN chmod +x /run.sh
+
+CMD ["-c", "/run.sh" ]
+
+
+# CMD ["-c", "sleep infinity" ]
