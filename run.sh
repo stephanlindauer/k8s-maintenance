@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+set -ex
 
 gcloud compute instances list --filter 'tags.items=stephanlindauer-k8s' --filter 'status=RUNNING' --format='json' | jq .
 gcloud compute addresses list --filter 'name=stephanlindauer-k8s-ingress' --format='json' | jq .
