@@ -13,7 +13,7 @@ echo $instance_name
 echo $access_config_name
 echo $address
 
-gcloud compute instances delete-access-config $instance_name --access-config-name="$access_config_name" --zone='europe-west3-a'
+gcloud compute instances delete-access-config $instance_name --access-config-name="$access_config_name" --zone='europe-west3-a' || true
 gcloud compute instances add-access-config $instance_name --access-config-name="$access_config_name" --address="$address" --zone='europe-west3-a'
 
 sleep infinity
