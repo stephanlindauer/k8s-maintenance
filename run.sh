@@ -16,4 +16,6 @@ echo $address
 timeout --preserve-status 20 gcloud compute instances delete-access-config $instance_name --access-config-name="$access_config_name" --zone='europe-west3-a' || true
 timeout --preserve-status 20 gcloud compute instances add-access-config $instance_name --access-config-name="$access_config_name" --address="$address" --zone='europe-west3-a'
 
+kubectl taint node $instance_name CriticalAddonsOnly-
+
 sleep infinity
