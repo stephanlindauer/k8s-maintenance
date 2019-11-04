@@ -16,6 +16,13 @@ echo $address
 timeout --preserve-status 20 gcloud compute instances delete-access-config $instance_name --access-config-name="$access_config_name" --zone='europe-west3-a' || true
 timeout --preserve-status 20 gcloud compute instances add-access-config $instance_name --access-config-name="$access_config_name" --address="$address" --zone='europe-west3-a'
 
-kubectl taint node $instance_name CriticalAddonsOnly- || true
+# handle taint
+found_taint=$(kubectl get node $instance_name --output=json | jq '.spec.taints[] | select(.key=="CriticalAddonsOnly")')
+echo $found_taint
+# if found_taint is not empty
+if [ -n "$found_taint" ]; then
+  # remove taint
+  kubectl taint node $instance_name CriticalAddonsOnly-
+fi
 
 sleep infinity
