@@ -17,7 +17,7 @@ timeout --preserve-status 20 gcloud compute instances delete-access-config $inst
 timeout --preserve-status 20 gcloud compute instances add-access-config $instance_name --access-config-name="$access_config_name" --address="$address" --zone='europe-west3-a'
 
 # handle taint
-found_taint=$(kubectl get node $instance_name --output=json | jq '.spec.taints[] | select(.key=="CriticalAddonsOnly")')
+found_taint=$(kubectl get node $instance_name --output=json | jq '.spec.taints[]? | select(.key=="CriticalAddonsOnly")')
 echo $found_taint
 # if found_taint is not empty
 if [ -n "$found_taint" ]; then
