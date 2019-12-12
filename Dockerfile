@@ -30,5 +30,3 @@ RUN export CLOUD_SDK_REPO="cloud-sdk-$(lsb_release -c -s)" && \
     apt-get update -y && apt-get install google-cloud-sdk -y
 
 ENTRYPOINT ["/bin/bash"]
-
-CMD ["-c", "sleep infinity" ]
