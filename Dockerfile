@@ -18,7 +18,7 @@ RUN apt-get update -y && \
         vim
 
 # install kubectl
-RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.16.2/bin/linux/amd64/kubectl && \
+RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.13.11/bin/linux/amd64/kubectl && \
     mv kubectl /usr/local/bin/kubectl && \
     chmod +x /usr/local/bin/kubectl
 
