@@ -15,7 +15,8 @@ RUN apt-get update -y && \
         iftop \
         postgresql-client \
         gnupg2 \
-        vim
+        vim \
+        bash
 
 # install kubectl
 RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.13.11/bin/linux/amd64/kubectl && \
