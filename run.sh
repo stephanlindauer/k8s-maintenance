@@ -5,7 +5,7 @@ set -ex
 gcloud compute instances list --filter 'tags.items=stephanlindauer-k8s' --filter 'status=RUNNING' --format='json' | jq .
 gcloud compute addresses list --filter 'name=stephanlindauer-k8s-ingress' --format='json' | jq .
 
-instance_name=$(gcloud compute instances list --filter 'tags.items=stephanlindauer-k8s' --filter 'status=RUNNING' --format='json' | jq -r .[0].name)
+instance_name=$(gcloud compute instances list --filter 'tags.items=stephanlindauer-k8s' --filter 'status=RUNNING' --format='json' | jq 'max_by(.creationTimestamp)' | jq -r .name)
 access_config_name=$(gcloud compute instances list --filter 'tags.items=stephanlindauer-k8s' --filter 'status=RUNNING' --format='json' | jq -r .[0].networkInterfaces[0].accessConfigs[0].name)
 address=$(gcloud compute addresses list --filter 'name=stephanlindauer-k8s-ingress'  --format="json" | jq -r .[0].address)
 
